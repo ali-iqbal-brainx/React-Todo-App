@@ -1,0 +1,63 @@
+body{
+  background-color: slateblue;
+}
+.center_div{
+  text-align: center;
+  border: 1px solid black;
+  width: 50%;
+  margin: auto;
+  background-color: white;
+  border: none;
+  border-radius: 15px;
+  max-height: 700px;
+  overflow-y: auto;
+
+}
+.App{
+  padding-top: 150px;
+}
+input{
+  width: 70%;
+  border: 1px solid grey;
+  border-radius: 8px;
+  height: 30px;
+}
+.addTodoBtn{
+  border-radius: 8px;
+  width: 70%;
+  height: 30px;
+  color: white;
+  background-color: slateblue;
+  border: 1px solid grey;
+  cursor: pointer;
+}
+table{
+  margin-top: 5px;
+  width: 100%;
+}
+th, td{
+  border-bottom: 1px solid black;
+  border-right: 1px solid black;
+  padding: 5px;
+}
+th:last-child {
+  border-right: none;
+} 
+td:last-child {
+  border-right: none;
+} 
+
+table button{
+  width: auto;
+  height: 30px;
+  background-color: slateblue;
+  border: none;
+  border-radius: 3px;
+  margin-right: 4px;
+  cursor: pointer;
+  color: white;
+}
+
+
+
+
