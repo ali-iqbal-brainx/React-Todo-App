@@ -29,16 +29,16 @@ const TodoRow = (props) => {
         }
     }
 
-    const deleteTodoApi = (key) => {
-        axios.delete('/delete/' + key)
-            .then(response => {
-                console.log(response);
-                getTodosApi();
-            })
-            .catch(error => {
-                console.log(error);
-            })
-    }
+    // const deleteTodoApi = (key) => {
+    //     axios.delete('/delete/' + key)
+    //         .then(response => {
+    //             console.log(response);
+    //             getTodosApi();
+    //         })
+    //         .catch(error => {
+    //             console.log(error);
+    //         })
+    // }
     const deleteTodo = (id) => {
         console.log("Key", id);
         deleteTodoApi(id);
