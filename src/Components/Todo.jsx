@@ -1,12 +1,16 @@
 import { addTodo, updateTodo, deleteTodo, markAsDone } from "../redux/actions";
 import { signout } from "../redux/userActions";
+import { updateUser } from "../redux/userActions";
+import { checkUserPassword } from "../redux/userActions";
+import { deleteUser } from "../redux/userActions";
+import { setUpdateUser } from "../redux/userActions";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from 'react-redux';
 import { todoList } from "../redux/actions";
 import { useSelector } from 'react-redux';
 
 
-function Todo() {
+function Todo(props) {
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(todoList());
@@ -20,7 +24,23 @@ function Todo() {
     const [updateId, setUpdateId] = useState('');
     const [markDone, setMarkDone] = useState(false);
     const [userId, setUserId] = useState("");
-
+    const [password, setPassword] = useState("");
+    const [updatePassword, setUpdatePassword] = useState("");
+    const [updateName, setUpdateName] = useState("");
+    const [updateEmail, setUpdateEmail] = useState("");
+    
+    const updateEmailEvent = (e) => {
+        setUpdateEmail(e.target.value);
+    }
+    const updatePasswordEvent = (e) => {
+        setUpdatePassword(e.target.value);
+    }
+    const updateNameEvent = (e) => {
+        setUpdateName(e.target.value);
+    }
+    const passwordEvent = (e) => {
+        setPassword(e.target.value);
+    }
     const nameEvent = (e) => {
         setName(e.target.value);
     }
@@ -81,33 +101,79 @@ function Todo() {
             )
         }
     }
-    return (
-        <>
-            <div className="App">
-                <div className="center_div">
-                    <br />
-                    <h1> ToDo List</h1>
-                    <br />
-                    <input type="text" name="name" placeholder="Add name" onChange={nameEvent} value={name} /><br /><br />
-                    <input type="text" name="desc" placeholder="Add description" onChange={descEvent} value={desc} /><br /><br />
-                    <UpdateAndAddButtonConditionalRendering />
-                    <br />
-                    <table>
-                        <tr>
-                            <th>Name</th>
-                            <th colSpan={2}>Desc</th>
-                            <th>Actions</th>
-                        </tr>
-                        <ConditionalRendering />
-                    </table>
-                    <br />
+    if (props.data === 2) {
+        return (
+            <>
+                <div className="App">
+                    <div className="center_div">
+                        <br />
+                        <h1> ToDo List</h1>
+                        <br />
+                        <input type="text" name="name" placeholder="Add name" onChange={nameEvent} value={name} /><br /><br />
+                        <input type="text" name="desc" placeholder="Add description" onChange={descEvent} value={desc} /><br /><br />
+                        <UpdateAndAddButtonConditionalRendering />
+                        <br />
+                        <table>
+                            <tr>
+                                <th>Name</th>
+                                <th colSpan={2}>Desc</th>
+                                <th>Actions</th>
+                            </tr>
+                            <ConditionalRendering />
+                        </table>
+                        <br />
+                    </div>
+                    <button className="signOutBtn" onClick={() => {
+                        dispatch(signout())
+                    }}>Log Out</button>
+                    <button className="signOutBtn" onClick={() => {
+                        dispatch(setUpdateUser(localStorage.getItem("userId")))
+                    }}>Update User</button>
+                    <button className="signOutBtn" onClick={() => {
+                        dispatch(deleteUser(localStorage.getItem("userId")))
+                    }}>Delete User</button>
                 </div>
-                <button className="signOutBtn" onClick={() => {
-                    dispatch(signout())
-                }}>Log Out</button>
-            </div>
-        </>
-    );
+            </>
+        );
+    } else if (props.data === 4) {
+        return (
+            <>
+                <div className="App">
+                    <div className="center_div">
+                        <br />
+                        <h1>Enter Password</h1>
+                        <br />
+                        <input type="password" name="password" placeholder="enter password" onChange={passwordEvent} value={password} /><br /><br />
+                        <button className="addTodoBtn" type="submit" onClick={() => {
+                            dispatch(checkUserPassword(password, localStorage.getItem("userId")))
+                        }}>Submit</button><br /><br />
+                        <br />
+                        <br />
+                    </div>
+                </div>
+            </>
+        );
+    } else if (props.data === 5) {
+        return (
+            <>
+                <div className="App">
+                    <div className="center_div">
+                        <br />
+                        <h1>Update User</h1>
+                        <br />
+                        <input type="text" name="name" placeholder="update name" onChange={updateNameEvent} value={updateName} /><br /><br />
+                        <input type="email" name="email" placeholder="update email" onChange={updateEmailEvent} value={updateEmail} /><br /><br />
+                        <input type="password" name="password" placeholder="update password" onChange={updatePasswordEvent} value={updatePassword} /><br /><br />
+                        <button className="addTodoBtn" type="submit" onClick={() => {
+                            dispatch(updateUser(updateName, updateEmail, updatePassword))
+                        }}>Submit</button><br /><br />
+                        <br />
+                        <br />
+                    </div>
+                </div>
+            </>
+        );
+    }
 }
 
 export default Todo;

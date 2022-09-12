@@ -33,6 +33,7 @@ const Login = () => {
                     <br />
                     <input type="email" name="email" placeholder="Add email" onChange={emailEvent} value={email} /><br /><br />
                     <input type="password" name="password" placeholder="Add password" onChange={passwordEvent} value={password} /><br /><br />
+                    <Link to="/forgotPassword" style={{ textDecoration: "none", color: "slateblue", fontSize: "13px" }}>forgot password?</Link><br /><br />
                     <button className="addTodoBtn" type="submit" onClick={loginHandler}>Log In</button><br /><br />
                     <Link to="/signup" style={{ textDecoration: "none", color: "white" }}><button className="addTodoBtn">Sign Up</button></Link>
                     <br />

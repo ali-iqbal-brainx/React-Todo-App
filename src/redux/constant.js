@@ -8,7 +8,14 @@ export const SIGN_IN = "SIGN_IN"
 export const IS_LOGIN = "IS_LOGIN"
 export const SIGN_OUT = "SIGN_OUT"
 export const SIGN_UP = "SIGN_UP"
-
+export const DELETE_USER = "DELETE_USER"
+export const UPDATE_USER = "UPDATE_USER"
+export const SET_UPDATE_USER = "SET_UPDATE_USER"
+export const SET_PASSWORD_VERIFICATION = "SET_PASSWORD_VERIFICATION"
+export const CHECK_USER_PASSWORD = "CHECK_USER_PASSWORD"
+export const SET_UPDATE_PAGE= "SET_UPDATE_PAGE"
+export const FORGOT_PASSWORD = "FORGOT_PASSWORD"
+export const RESET_PASSWORD = "RESET_PASSWORD"
 
 
 
